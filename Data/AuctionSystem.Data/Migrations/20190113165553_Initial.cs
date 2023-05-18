@@ -1,12 +1,4 @@
-<<<<<<<< HEAD:Data/AuctionSystem.Data/Migrations/20190113165553_Initial.cs
 ﻿namespace AuctionSystem.Data.Migrations
-========
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-
-namespace Auction.Data.Migrations
->>>>>>>> c000a51411483ae8613c62e53d0cf2a0b2e8812c:Auction/Data/Migrations/00000000000000_CreateIdentitySchema.cs
 {
     using System;
     using Microsoft.EntityFrameworkCore.Metadata;
