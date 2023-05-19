@@ -115,9 +115,6 @@ namespace AuctionSystem.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CategoryId")
-                        .IsRequired();
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500);
@@ -130,6 +127,9 @@ namespace AuctionSystem.Data.Migrations
 
                     b.Property<decimal>("StartingPrice");
 
+                    b.Property<string>("SubCategoryId")
+                        .IsRequired();
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(120);
@@ -139,11 +139,47 @@ namespace AuctionSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("SubCategoryId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("AuctionSystem.Models.Picture", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ItemId")
+                        .IsRequired();
+
+                    b.Property<string>("Url")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("Pictures");
+                });
+
+            modelBuilder.Entity("AuctionSystem.Models.SubCategory", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CategoryId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -271,15 +307,30 @@ namespace AuctionSystem.Data.Migrations
 
             modelBuilder.Entity("AuctionSystem.Models.Item", b =>
                 {
-                    b.HasOne("AuctionSystem.Models.Category", "Category")
+                    b.HasOne("AuctionSystem.Models.SubCategory", "SubCategory")
                         .WithMany("Items")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AuctionSystem.Models.AuctionUser", "User")
                         .WithMany("ItemsSold")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AuctionSystem.Models.Picture", b =>
+                {
+                    b.HasOne("AuctionSystem.Models.Item", "Item")
+                        .WithMany("Pictures")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AuctionSystem.Models.SubCategory", b =>
+                {
+                    b.HasOne("AuctionSystem.Models.Category", "Category")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("CategoryId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

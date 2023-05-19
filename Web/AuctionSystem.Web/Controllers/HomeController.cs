@@ -2,9 +2,9 @@
 {
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
-    using Models;
+    using ViewModels;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IActionResult Index()
         {
