@@ -1,12 +1,11 @@
 ﻿namespace AuctionSystem.Web
 {
     using System;
-    using AuctionSystem.Models;
     using AutoMapper;
     using Common.AutoMapping.Profiles;
+    using Common.EmailSender;
     using Data;
     using Infrastructure.Extensions;
-    using Infrastructure.Utilities;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -17,6 +16,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Models;
     using Services.Models;
     using SignalRHubs;
 
@@ -68,8 +68,12 @@
                 .AddDefaultTokenProviders();
 
             services
+                .AddDistributedMemoryCache();
+
+            services
                 .AddDomainServices()
                 .AddApplicationServices()
+                .AddCommonProjectServices()
                 .AddAuthentication();
 
             services.Configure<SecurityStampValidatorOptions>(options =>
@@ -103,7 +107,7 @@
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/error/500");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -118,6 +122,8 @@
             app.UseAuthentication();
 
             app.UseSignalR(config=> config.MapHub<BidHub>("/bidHub"));
+            
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
 
             app.UseMvc(routes =>
             {
@@ -129,7 +135,7 @@
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "items",
-                    template: "Items/Details/{id}/{slug:required}",
+                    template: "Items/{action}/{id}/{slug:required}",
                     defaults: new { controller = "Items", action = "Details" });
             });
 

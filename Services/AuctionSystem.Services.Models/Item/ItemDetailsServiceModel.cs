@@ -19,5 +19,7 @@ namespace AuctionSystem.Services.Models.Item
         public DateTime EndTime { get; set; }
 
         public ICollection<PictureDisplayServiceModel> Pictures { get; set; }
+        
+        public string UserUserName { get; set; }
     }
 }

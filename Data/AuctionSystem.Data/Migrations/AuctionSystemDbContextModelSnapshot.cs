@@ -2,6 +2,7 @@
 namespace AuctionSystem.Data.Migrations
 {
     using System;
+    using Data;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Infrastructure;
     using Microsoft.EntityFrameworkCore.Metadata;
@@ -120,6 +121,8 @@ namespace AuctionSystem.Data.Migrations
                         .HasMaxLength(500);
 
                     b.Property<DateTime>("EndTime");
+
+                    b.Property<bool>("IsEmailSent");
 
                     b.Property<decimal>("MinIncrease");
 

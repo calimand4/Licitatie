@@ -1,28 +1,51 @@
 namespace AuctionSystem.Web.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Infrastructure.Collections;
+    using Infrastructure.Collections.Interfaces;
+    using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Services.Interfaces;
     using Services.Models.Item;
-    using Services.Models.SubCategory;
     using ViewModels.Item;
 
     public class ItemsController : BaseController
     {
         private readonly IItemsService itemsService;
-        private readonly ICategoriesService categoriesService;
+        private readonly ICache cache;
+        private readonly IUserService userService;
+        private readonly IPictureService pictureService;
 
-        public ItemsController(IItemsService itemsService, ICategoriesService categoriesService)
+        public ItemsController(IItemsService itemsService, ICache cache, IUserService userService, IPictureService pictureService)
         {
             this.itemsService = itemsService;
-            this.categoriesService = categoriesService;
+            this.cache = cache;
+            this.userService = userService;
+            this.pictureService = pictureService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var user = await this.userService
+                .GetUserIdByUsernameAsync(this.HttpContext.User.Identity.Name);
+
+            var serviceItems = await this.itemsService
+                    .GetAllItemsForGivenUser<ItemIndexServiceModel>(user);
+            if (serviceItems == null)
+            {
+                this.ShowErrorMessage(NotificationMessages.TryAgainLaterError);
+                return View();
+            }
+
+            var items = serviceItems
+                .Select(Mapper.Map<ItemIndexViewModel>)
+                .ToList();
+
+            return View(items);
         }
 
         public async Task<IActionResult> List(string id, int pageIndex = 1)
@@ -32,7 +55,7 @@ namespace AuctionSystem.Web.Controllers
             if (id == null)
             {
                 serviceItems = await this.itemsService
-                    .GetAllItems<ItemListingServiceModel>();
+                    .GetAllItemsAsync<ItemListingServiceModel>();
             }
             else
             {
@@ -45,17 +68,10 @@ namespace AuctionSystem.Web.Controllers
                 return RedirectToHome();
             }
 
-            var allItems = serviceItems.Select(Mapper.Map<ItemListingDto>).ToList();
+            var allItems = serviceItems.Select(Mapper.Map<ItemListingDto>)
+                .ToPaginatedList(pageIndex, WebConstants.ItemsCountPerPage);
 
-            var totalPages = (int)(Math.Ceiling(allItems.Count() / (double)WebConstants.ItemsCountPerPage));
-            pageIndex = Math.Min(Math.Max(1, pageIndex), totalPages);
-
-            var itemsToShow = allItems
-                .Skip((pageIndex - 1) * WebConstants.ItemsCountPerPage)
-                .Take(WebConstants.ItemsCountPerPage)
-                .ToList();
-
-            var items = new ItemListingViewModel { Items = new PaginatedList<ItemListingDto>(itemsToShow, pageIndex, totalPages) };
+            var items = new ItemListingViewModel { Items = allItems };
             return this.View(items);
         }
 
@@ -79,7 +95,7 @@ namespace AuctionSystem.Web.Controllers
         {
             var model = new ItemCreateBindingModel
             {
-                SubCategories = await this.GetAllSubCategoriesAsync()
+                SubCategories = await this.GetAllCategoriesWithSubCategoriesAsync()
             };
 
             return this.View(model);
@@ -91,7 +107,7 @@ namespace AuctionSystem.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                model.SubCategories = await this.GetAllSubCategoriesAsync();
+                model.SubCategories = await this.GetAllCategoriesWithSubCategoriesAsync();
 
                 return this.View(model);
             }
@@ -107,7 +123,7 @@ namespace AuctionSystem.Web.Controllers
             {
                 this.ShowErrorMessage(NotificationMessages.ItemCreateError);
 
-                model.SubCategories = await this.GetAllSubCategoriesAsync();
+                model.SubCategories = await this.GetAllCategoriesWithSubCategoriesAsync();
 
                 return this.View(model);
             }
@@ -117,45 +133,175 @@ namespace AuctionSystem.Web.Controllers
             return this.RedirectToAction("Details", new { id });
         }
 
-        // Get all SubCategories and add them into SelectListGroups based on their parent categories
-        private async Task<IEnumerable<SelectListItem>> GetAllSubCategoriesAsync()
+        [Authorize]
+        public async Task<IActionResult> Edit(string id)
         {
-            var subCategories = (await this.categoriesService
-                    .GetAllSubCategoriesAsync<SubCategoryListingServiceModel>())
-                .OrderBy(c => c.Category.Name)
-                .ThenBy(c => c.Name)
+            var serviceModel = await this.itemsService.GetByIdAsync<ItemEditServiceModel>(id);
+
+            if (serviceModel == null ||
+                serviceModel.UserUserName != this.User.Identity.Name &&
+                !this.User.IsInRole(WebConstants.AdministratorRole))
+            {
+                this.ShowErrorMessage(NotificationMessages.ItemNotFound);
+                return this.RedirectToHome();
+            }
+
+            var model = Mapper.Map<ItemEditBindingModel>(serviceModel);
+
+            model.SubCategories = await this.GetAllCategoriesWithSubCategoriesAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(string id, ItemEditBindingModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                model.SubCategories = await this.GetAllCategoriesWithSubCategoriesAsync();
+
+                return this.View(model);
+            }
+
+            var serviceModel = await this.itemsService.GetByIdAsync<ItemEditServiceModel>(id);
+
+            if (serviceModel == null ||
+                serviceModel.UserUserName != this.User.Identity.Name &&
+                !this.User.IsInRole(WebConstants.AdministratorRole))
+            {
+                this.ShowErrorMessage(NotificationMessages.ItemNotFound);
+                return this.RedirectToHome();
+            }
+
+            serviceModel.Title = model.Title;
+            serviceModel.Description = model.Description;
+            serviceModel.StartingPrice = model.StartingPrice;
+            serviceModel.MinIncrease = model.MinIncrease;
+            serviceModel.StartTime = model.StartTime.ToUniversalTime();
+            serviceModel.EndTime = model.EndTime.ToUniversalTime();
+            serviceModel.SubCategoryId = model.SubCategoryId;
+
+            bool success = await this.itemsService.UpdateAsync(serviceModel);
+
+            if (!success)
+            {
+                this.ShowErrorMessage(NotificationMessages.ItemUpdateError);
+
+                model.SubCategories = await this.GetAllCategoriesWithSubCategoriesAsync();
+
+                return this.View(model);
+            }
+
+            this.ShowSuccessMessage(NotificationMessages.ItemUpdated);
+
+            return this.RedirectToAction("Details", new { id });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var serviceItem = await this.itemsService
+                .GetByIdAsync<ItemDetailsServiceModel>(id);
+            if (serviceItem == null ||
+                serviceItem.UserUserName != this.User.Identity.Name &&
+                !this.User.IsInRole(WebConstants.AdministratorRole))
+            {
+                this.ShowErrorMessage(NotificationMessages.ItemNotFound);
+
+                return RedirectToHome();
+            }
+
+            var item = Mapper.Map<ItemDetailsViewModel>(serviceItem);
+
+            return View(item);
+        }
+
+        [ActionName(nameof(Delete))]
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var serviceItem = await this.itemsService
+                .GetByIdAsync<ItemDetailsServiceModel>(id);
+
+            if (serviceItem == null ||
+                serviceItem.UserUserName != this.User.Identity.Name &&
+                !this.User.IsInRole(WebConstants.AdministratorRole))
+            {
+                this.ShowErrorMessage(NotificationMessages.ItemNotFound);
+
+                return this.RedirectToHome();
+            }
+
+            var isDeleted = await this.itemsService
+                .DeleteAsync(id);
+            if (!isDeleted)
+            {
+                this.ShowErrorMessage(NotificationMessages.ItemDeletedError);
+                return this.RedirectToAction(nameof(Delete), new { id });
+            }
+
+            this.ShowSuccessMessage(NotificationMessages.ItemDeletedSuccessfully);
+            return this.RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Search(string query, int pageIndex = 1)
+        {
+            query = query?.Trim();
+
+            if (query == null || query.Length < 3)
+            {
+                this.ShowErrorMessage(NotificationMessages.SearchQueryTooShort);
+
+                return this.RedirectToHome();
+            }
+
+            var serviceItems = (await this.itemsService
+                    .SearchByTitleAsync<ItemListingServiceModel>(query))
                 .ToArray();
 
-            var selectListItems = new SelectListItem[subCategories.Length];
-
-            var selectListGroups = new Dictionary<string, SelectListGroup>();
-
-            for (int i = 0; i < subCategories.Length; i++)
+            if (!serviceItems.Any())
             {
-                var subCategory = subCategories[i];
+                this.ShowErrorMessage(NotificationMessages.SearchNoItems);
 
-                var categoryName = subCategory.Category.Name;
+                return this.RedirectToHome();
+            }
 
-                var exists = selectListGroups.TryGetValue(categoryName, out var selectListGroup);
+            var allItems = serviceItems.Select(Mapper.Map<ItemListingDto>)
+                .ToPaginatedList(pageIndex, WebConstants.ItemsCountPerPage);
 
-                if (!exists)
+            var items = new ItemSearchViewModel
+            {
+                Items = allItems,
+                Query = query
+            };
+
+            this.ViewData[WebConstants.SearchViewDataKey] = query;
+
+            return this.View(items);
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetAllCategoriesWithSubCategoriesAsync()
+        {
+            var categories = await this.cache.GetAllCategoriesWithSubcategoriesAsync();
+
+            var selectListItems = new List<SelectListItem>();
+
+            foreach (var category in categories)
+            {
+                var group = new SelectListGroup { Name = category.Name };
+                foreach (var subCategory in category.SubCategories.OrderBy(c => c.Name))
                 {
-                    selectListGroup = new SelectListGroup
+                    var item = new SelectListItem
                     {
-                        Name = categoryName
+                        Text = subCategory.Name,
+                        Value = subCategory.Id,
+                        Group = group
                     };
 
-                    selectListGroups.Add(categoryName, selectListGroup);
+                    selectListItems.Add(item);
                 }
-
-                var item = new SelectListItem
-                {
-                    Text = subCategory.Name,
-                    Value = subCategory.Id,
-                    Group = selectListGroup
-                };
-
-                selectListItems[i] = item;
             }
 
             return selectListItems;
