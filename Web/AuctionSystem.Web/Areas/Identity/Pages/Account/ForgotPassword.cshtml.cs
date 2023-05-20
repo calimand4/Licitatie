@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using AuctionSystem.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+using AuctionSystem.Common.EmailSender.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AuctionSystem.Web.Areas.Identity.Pages.Account
 {
+
     [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
@@ -51,10 +52,11 @@ namespace AuctionSystem.Web.Areas.Identity.Pages.Account
                 var callbackUrl = Url.Page(
                     "/Account/ResetPassword",
                     pageHandler: null,
-                    values: new { code },
+                    values: new { code, user.Email },
                     protocol: Request.Scheme);
 
                 await _emailSender.SendEmailAsync(
+                    WebConstants.AppMainEmailAddress,
                     Input.Email,
                     "Reset Password",
                     $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");

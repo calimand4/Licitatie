@@ -10,8 +10,6 @@
     using FluentAssertions;
     using Implementations;
     using Interfaces;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Internal;
     using Microsoft.EntityFrameworkCore;
     using Models.Item;
     using Moq;
@@ -36,7 +34,7 @@
         public ItemsServiceTests()
         {
             this.dbContext = base.DatabaseInstance;
-            this.itemsService = new ItemsService(this.dbContext, Mock.Of<IPictureService>());
+            this.itemsService = new ItemsService(this.mapper, this.dbContext, Mock.Of<IPictureService>());
         }
 
         [Fact]
@@ -526,7 +524,7 @@
                 EndTime = SampleEndTime,
                 SubCategoryId = SampleSubCategoryId,
                 UserName = SampleUsername,
-                PictFormFiles = new List<IFormFile>(),
+                PictureStreams = new List<Stream>(),
             };
 
             // Act
@@ -561,7 +559,7 @@
                 EndTime = SampleEndTime,
                 SubCategoryId = this.dbContext.SubCategories.FirstOrDefault()?.Id,
                 UserName = SampleUsername,
-                PictFormFiles = new List<IFormFile> { new FormFile(Stream.Null, 200000, 50, "SampleName", "SampleFileName") },
+                PictureStreams = new List<Stream> { Stream.Null }, // TODO Use valid stream
             };
 
             // Act

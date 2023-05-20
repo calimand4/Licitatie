@@ -3,15 +3,16 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using AuctionSystem.Models;
+    using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Data;
     using Interfaces;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
     using Models;
@@ -21,8 +22,8 @@
         private readonly CloudinaryOptions options;
         private readonly Cloudinary cloudinary;
 
-        public PictureService(AuctionSystemDbContext context, IOptions<CloudinaryOptions> options)
-            : base(context)
+        public PictureService(IMapper mapper, AuctionSystemDbContext context, IOptions<CloudinaryOptions> options)
+            : base(mapper, context)
         {
             this.options = options.Value;
 
@@ -34,12 +35,15 @@
             this.cloudinary = new Cloudinary(account);
         }
 
-        public void Delete(string itemId)
-            => this.cloudinary.DeleteResourcesByPrefix($"{itemId}/");
+        public async Task DeleteItemFolder(string itemId)
+        {
+            await this.cloudinary.DeleteResourcesByPrefixAsync($"{itemId}/");
+            await this.cloudinary.DeleteFolderAsync($"{itemId}");
+        }
 
         public async Task Delete(string itemId, string pictureId)
         {
-            this.cloudinary.DeleteResourcesByPrefix($"{itemId}/{pictureId}");
+            await this.cloudinary.DeleteResourcesByPrefixAsync($"{itemId}/{pictureId}");
 
             var pictureToRemove = await this.Context
                 .Pictures
@@ -58,19 +62,19 @@
             => await this.Context
                 .Pictures
                 .Where(p => p.Id == pictureId)
-                .ProjectTo<T>()
+                .ProjectTo<T>(this.mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
 
-        public async Task<IEnumerable<UploadResult>> Upload(ICollection<IFormFile> pictures, string itemId)
+        public async Task<IEnumerable<UploadResult>> Upload(ICollection<Stream> pictureStreams, string itemId)
         {
             var uploadResults = new ConcurrentBag<ImageUploadResult>();
-            Parallel.ForEach(pictures, (picture) =>
+            Parallel.ForEach(pictureStreams, (pictureStream) =>
             {
                 var guid = Guid.NewGuid().ToString();
                 var uploadParams = new ImageUploadParams
                 {
                     PublicId = guid,
-                    File = new FileDescription(guid, picture.OpenReadStream()),
+                    File = new FileDescription(guid, pictureStream),
                     Folder = $"{itemId}",
                 };
                 var uploadResult = this.cloudinary.UploadLarge(uploadParams);
