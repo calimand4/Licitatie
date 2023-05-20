@@ -6,6 +6,7 @@
     using Common.EmailSender;
     using Data;
     using Infrastructure.Extensions;
+    using Infrastructure.Middleware;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -62,6 +63,8 @@
                     options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
+
+                    options.SignIn.RequireConfirmedEmail = true;
                 })
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<AuctionSystemDbContext>()
@@ -114,7 +117,9 @@
 
             app.UseResponseCompression();
             app.UseStatusCodePages();
-
+            app.AddDefaultSecurityHeaders(
+                new SecurityHeadersBuilder()
+                    .AddDefaultSecurePolicy());
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

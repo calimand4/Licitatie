@@ -5,12 +5,13 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using AuctionSystem.Models;
     using Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
+    using Middleware;
+    using Models;
     using Newtonsoft.Json;
 
     public static class ApplicationBuilderExtensions
@@ -30,6 +31,9 @@
 
             return builder;
         }
+
+        public static IApplicationBuilder AddDefaultSecurityHeaders(this IApplicationBuilder app, SecurityHeadersBuilder builder)
+            => app.UseMiddleware<SecurityHeadersMiddleware>(builder.Policy());
 
         private static async Task SeedRequiredData(AuctionSystemDbContext dbContext,
             UserManager<AuctionUser> userManager,
@@ -76,16 +80,15 @@
                     {
                         Email = $"test{i}@test.com",
                         FullName = $"Test Testov{i}",
-                        UserName = $"test{i}@test.com"
-                    }
-                        ;
+                        UserName = $"test{i}@test.com",
+                        EmailConfirmed = true
+                    };
+                    
                     allUsers.Add(user);
                 }
 
                 foreach (var user in allUsers)
                 {
-                    user.EmailConfirmed = true;
-
                     await userManager.CreateAsync(user, "test123");
                 }
 
@@ -93,8 +96,10 @@
                 {
                     Email = "admin@admin.com",
                     FullName = "Admin Adminski",
-                    UserName = "admin@admin.com"
+                    UserName = "admin@admin.com",
+                    EmailConfirmed = true
                 };
+                
                 await userManager.CreateAsync(admin, "admin123");
                 await userManager.AddToRoleAsync(admin, WebConstants.AdministratorRole);
             }
@@ -121,17 +126,17 @@
                     int i = 1;
                     foreach (var subCategory in category.SubCategories)
                     {
+                        var startTime = DateTime.UtcNow.AddDays(random.Next(0, 5));
                         var item = new Item
                         {
                             Description = $"Test Description_{i}",
                             Title = $"Test Title_{i}",
-                            StartTime = DateTime.UtcNow.AddDays(random.Next(0, 5)),
-                            EndTime = DateTime.UtcNow.AddHours(random.Next(0, 3)),
+                            StartTime = startTime,
+                            EndTime = startTime.AddHours(random.Next(1, 10)),
                             StartingPrice = random.Next(10, 500),
                             MinIncrease = random.Next(1, 100),
                             SubCategoryId = subCategory.Id,
-                            UserId = dbContext.Users.First().Id,
-                            Pictures = new List<Picture> { new Picture { Url = "https://res.cloudinary.com/do72gylo3/image/upload/v1547833155/default-img.jpg" } }
+                            UserId = dbContext.Users.First().Id
                         };
 
                         i++;

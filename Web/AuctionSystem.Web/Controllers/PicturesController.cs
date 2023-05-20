@@ -15,8 +15,8 @@
     [Authorize]
     public class PicturesController : BaseController
     {
-        private readonly IPictureService pictureService;
         private readonly IItemsService ItemsService;
+        private readonly IPictureService pictureService;
 
         public PicturesController(IPictureService pictureService, IItemsService itemsService)
         {
@@ -62,7 +62,7 @@
             }
             await this.pictureService.Delete(picture.ItemId, picture.Id);
 
-            return this.Ok();
+            return this.Json(new object());
         }
     }
 }

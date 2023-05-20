@@ -29,6 +29,8 @@ namespace AuctionSystem.Web.ViewModels.Item
 
         public ICollection<PictureDisplayViewModel> Pictures { get; set; }
 
+        public string SubCategoryName { get; set; }
+
         public string PrimaryPicturePath => this.GetPrimaryPicturePath(this.Pictures);
 
         private string GetPrimaryPicturePath(IEnumerable<PictureDisplayViewModel> pictures)
@@ -41,6 +43,5 @@ namespace AuctionSystem.Web.ViewModels.Item
 
             return firstPic?.Url;
         }
-
     }
 }
