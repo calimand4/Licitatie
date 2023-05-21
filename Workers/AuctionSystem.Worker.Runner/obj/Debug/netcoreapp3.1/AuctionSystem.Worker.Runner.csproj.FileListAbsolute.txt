@@ -1,0 +1,5 @@
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Workers\AuctionSystem.Worker.Runner\obj\Debug\netcoreapp3.1\AuctionSystem.Worker.Runner.csproj.AssemblyReference.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Workers\AuctionSystem.Worker.Runner\obj\Debug\netcoreapp3.1\AuctionSystem.Worker.Runner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Workers\AuctionSystem.Worker.Runner\obj\Debug\netcoreapp3.1\AuctionSystem.Worker.Runner.AssemblyInfoInputs.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Workers\AuctionSystem.Worker.Runner\obj\Debug\netcoreapp3.1\AuctionSystem.Worker.Runner.AssemblyInfo.cs
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Workers\AuctionSystem.Worker.Runner\obj\Debug\netcoreapp3.1\AuctionSystem.Worker.Runner.csproj.CoreCompileInputs.cache

@@ -1,0 +1,15 @@
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\bin\Debug\netcoreapp3.1\AuctionSystem.Services.Models.deps.json
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\bin\Debug\netcoreapp3.1\AuctionSystem.Services.Models.dll
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\bin\Debug\netcoreapp3.1\AuctionSystem.Services.Models.pdb
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\bin\Debug\netcoreapp3.1\AuctionSystem.Common.dll
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\bin\Debug\netcoreapp3.1\AuctionSystem.Models.dll
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\bin\Debug\netcoreapp3.1\AuctionSystem.Common.pdb
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\bin\Debug\netcoreapp3.1\AuctionSystem.Models.pdb
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.csproj.AssemblyReference.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.AssemblyInfoInputs.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.AssemblyInfo.cs
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.csproj.CoreCompileInputs.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.csproj.CopyComplete
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.dll
+C:\Users\COREi7\Desktop\lucrare\Licitatie\Services\AuctionSystem.Services.Models\obj\Debug\netcoreapp3.1\AuctionSystem.Services.Models.pdb

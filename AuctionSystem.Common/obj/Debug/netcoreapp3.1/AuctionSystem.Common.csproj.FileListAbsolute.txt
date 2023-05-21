@@ -1,0 +1,10 @@
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\bin\Debug\netcoreapp3.1\AuctionSystem.Common.deps.json
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\bin\Debug\netcoreapp3.1\AuctionSystem.Common.dll
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\bin\Debug\netcoreapp3.1\AuctionSystem.Common.pdb
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\obj\Debug\netcoreapp3.1\AuctionSystem.Common.csproj.AssemblyReference.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\obj\Debug\netcoreapp3.1\AuctionSystem.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\obj\Debug\netcoreapp3.1\AuctionSystem.Common.AssemblyInfoInputs.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\obj\Debug\netcoreapp3.1\AuctionSystem.Common.AssemblyInfo.cs
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\obj\Debug\netcoreapp3.1\AuctionSystem.Common.csproj.CoreCompileInputs.cache
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\obj\Debug\netcoreapp3.1\AuctionSystem.Common.dll
+C:\Users\COREi7\Desktop\lucrare\Licitatie\AuctionSystem.Common\obj\Debug\netcoreapp3.1\AuctionSystem.Common.pdb

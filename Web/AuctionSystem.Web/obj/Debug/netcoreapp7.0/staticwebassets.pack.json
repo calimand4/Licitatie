@@ -1,0 +1,201 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\bidding.min.css",
+      "PackagePath": "staticwebassets\\bundle\\bidding.min.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\bidding.min.js",
+      "PackagePath": "staticwebassets\\bundle\\bidding.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\bootstrap-datetimepicker.min.css",
+      "PackagePath": "staticwebassets\\bundle\\bootstrap-datetimepicker.min.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\bootstrap-datetimepicker.min.js",
+      "PackagePath": "staticwebassets\\bundle\\bootstrap-datetimepicker.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\datatables.min.css",
+      "PackagePath": "staticwebassets\\bundle\\datatables.min.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\datatables.min.js",
+      "PackagePath": "staticwebassets\\bundle\\datatables.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\edit-item.min.js",
+      "PackagePath": "staticwebassets\\bundle\\edit-item.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\elevatezoom.min.js",
+      "PackagePath": "staticwebassets\\bundle\\elevatezoom.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\item-details.min.css",
+      "PackagePath": "staticwebassets\\bundle\\item-details.min.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\main.min.css",
+      "PackagePath": "staticwebassets\\bundle\\main.min.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\main.min.js",
+      "PackagePath": "staticwebassets\\bundle\\main.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\slick.min.css",
+      "PackagePath": "staticwebassets\\bundle\\slick.min.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\slick.min.js",
+      "PackagePath": "staticwebassets\\bundle\\slick.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\time-calculator.min.js",
+      "PackagePath": "staticwebassets\\bundle\\time-calculator.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\vendor.min.css",
+      "PackagePath": "staticwebassets\\bundle\\vendor.min.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\bundle\\vendor.min.js",
+      "PackagePath": "staticwebassets\\bundle\\vendor.min.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\default-img.jpg",
+      "PackagePath": "staticwebassets\\default-img.jpg"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\bidding\\css\\bid.css",
+      "PackagePath": "staticwebassets\\source\\bidding\\css\\bid.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\bidding\\js\\bid.js",
+      "PackagePath": "staticwebassets\\source\\bidding\\js\\bid.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\bidding\\js\\notify.js",
+      "PackagePath": "staticwebassets\\source\\bidding\\js\\notify.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\bidding\\js\\signalr.js",
+      "PackagePath": "staticwebassets\\source\\bidding\\js\\signalr.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\bootstrap-datetimepicker\\css\\bootstrap-datetimepicker.css",
+      "PackagePath": "staticwebassets\\source\\bootstrap-datetimepicker\\css\\bootstrap-datetimepicker.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\bootstrap-datetimepicker\\js\\bootstrap-datetimepicker.js",
+      "PackagePath": "staticwebassets\\source\\bootstrap-datetimepicker\\js\\bootstrap-datetimepicker.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\datatables\\css\\datatables.css",
+      "PackagePath": "staticwebassets\\source\\datatables\\css\\datatables.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\datatables\\js\\datatables-init.js",
+      "PackagePath": "staticwebassets\\source\\datatables\\js\\datatables-init.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\datatables\\js\\datatables.js",
+      "PackagePath": "staticwebassets\\source\\datatables\\js\\datatables.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\edit-item\\js\\edit-item.js",
+      "PackagePath": "staticwebassets\\source\\edit-item\\js\\edit-item.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\elevatezoom\\js\\elevatezoom-init.js",
+      "PackagePath": "staticwebassets\\source\\elevatezoom\\js\\elevatezoom-init.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\elevatezoom\\js\\jquery.elevatezoom.js",
+      "PackagePath": "staticwebassets\\source\\elevatezoom\\js\\jquery.elevatezoom.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\item-details\\css\\item-details.css",
+      "PackagePath": "staticwebassets\\source\\item-details\\css\\item-details.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\main\\css\\cookiealert.css",
+      "PackagePath": "staticwebassets\\source\\main\\css\\cookiealert.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\main\\css\\site.css",
+      "PackagePath": "staticwebassets\\source\\main\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\main\\js\\auto-dropdown.js",
+      "PackagePath": "staticwebassets\\source\\main\\js\\auto-dropdown.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\main\\js\\moment-helper.js",
+      "PackagePath": "staticwebassets\\source\\main\\js\\moment-helper.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\slick\\css\\slick-theme.css",
+      "PackagePath": "staticwebassets\\source\\slick\\css\\slick-theme.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\slick\\css\\slick.css",
+      "PackagePath": "staticwebassets\\source\\slick\\css\\slick.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\slick\\js\\slick.js",
+      "PackagePath": "staticwebassets\\source\\slick\\js\\slick.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\time-calculator\\js\\time-calculator.js",
+      "PackagePath": "staticwebassets\\source\\time-calculator\\js\\time-calculator.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\vendor\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\source\\vendor\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\vendor\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\source\\vendor\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\vendor\\js\\jquery.js",
+      "PackagePath": "staticwebassets\\source\\vendor\\js\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\vendor\\js\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\source\\vendor\\js\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\vendor\\js\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\source\\vendor\\js\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\COREi7\\Desktop\\lucrare\\Licitatie\\Web\\AuctionSystem.Web\\wwwroot\\source\\vendor\\js\\moment.js",
+      "PackagePath": "staticwebassets\\source\\vendor\\js\\moment.js"
+    },
+    {
+      "Id": "obj\\Debug\\netcoreapp7.0\\staticwebassets\\msbuild.AuctionSystem.Web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\netcoreapp7.0\\staticwebassets\\msbuild.build.AuctionSystem.Web.props",
+      "PackagePath": "build\\AuctionSystem.Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\netcoreapp7.0\\staticwebassets\\msbuild.buildMultiTargeting.AuctionSystem.Web.props",
+      "PackagePath": "buildMultiTargeting\\AuctionSystem.Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\netcoreapp7.0\\staticwebassets\\msbuild.buildTransitive.AuctionSystem.Web.props",
+      "PackagePath": "buildTransitive\\AuctionSystem.Web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
