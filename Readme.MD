@@ -5,7 +5,14 @@ Interfața intuitivă a site-ului facilitează navigarea și participarea la lic
 
 Pentru vânzători, AuctionSystem oferă o platformă ușor de utilizat pentru a-și promova produsele și a atrage cumpărători interesați. Aceștia pot stabili durata licitațiilor, prețurile minime și pot gestiona toate aspectele tranzacțiilor într-un mod convenabil.
 ## Demo
-Această secție trebuie să includă screenshot-uri, gif-uri, video-uri și descrieri cu demonstrarea și explicația funcționalității aplicației web
+
+[Screenshot1](https://github.com/calimand4/Licitatie/blob/main/screenshots/111.png)
+
+[Screenshot2](https://github.com/calimand4/Licitatie/blob/main/screenshots/222.png)
+
+[Screenshot3](https://github.com/calimand4/Licitatie/blob/main/screenshots/333.png)
+
+[Screenshot4](https://github.com/calimand4/Licitatie/blob/main/screenshots/444.png)
 ## Automatically generated users
 | Username        	| Password 	| Role          	|
 |-----------------	|----------	|---------------	|
